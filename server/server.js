@@ -10,7 +10,7 @@ var app = express();
 app.use('/static', express.static(path.join(__dirname, 'client')))
 
 app.get("/", (req, res) => {
-    res.send("Hello World");
+    res.send("<!doctype html> <html> <head></head> <body><p>Hello World....</p></body></html>");
 })
 
 app.listen(port, () => {
