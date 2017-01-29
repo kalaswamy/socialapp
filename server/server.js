@@ -4,7 +4,7 @@ const process = require("process");
 
 
 
-var port = process.env.port || 3000;
+var port = process.env.PORT || 5000;
 
 var app = express();
 app.use('/static', express.static(path.join(__dirname, 'client')))
