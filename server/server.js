@@ -7,10 +7,17 @@ const process = require("process");
 var port = process.env.PORT || 5000;
 
 var app = express();
-app.use('/static', express.static(path.join(__dirname, 'client')))
+
+// Set the routes for the static files for both relative and direct paths
+app.use(express.static('client'));
+app.use(express.static(path.join(__dirname, 'client')));
+app.use(express.static(path.join(__dirname, 'node_modules/bootstrap/dist')));
+app.use(express.static('node_modules/bootstrap/dist'));
 
 app.get("/", (req, res) => {
-    res.send("<!doctype html> <html> <head></head> <body><p>Hello World....</p></body></html>");
+    console.log(" *******came inside ***********")
+    console.log (req.path + " " + req.baseUrl);
+    //res.send("<!doctype html> <html> <head></head> <body><p>Hello World....</p></body></html>");
 })
 
 app.listen(port, () => {
