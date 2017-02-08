@@ -20,6 +20,27 @@ app.get("/", (req, res) => {
     //res.send("<!doctype html> <html> <head></head> <body><p>Hello World....</p></body></html>");
 })
 
+app.post("/contact", (req, res) => {
+    console.log(" *******came inside post ***********")
+    console.log (req.path + " " + req.baseUrl);
+    res.redirect('/index.html');
+    //res.send("<!doctype html> <html> <head></head> <body><p>Hello World....</p></body></html>");
+});
+
+app.post("/signup", (req, res) => {
+    console.log(" *******came inside post ***********")
+    console.log (req.path + " " + req.baseUrl);
+    res.redirect('/index.html');
+    //res.send("<!doctype html> <html> <head></head> <body><p>Hello World....</p></body></html>");
+});
+
+app.post("/login", (req, res) => {
+    console.log(" *******came inside post ***********")
+    console.log (req.path + " " + req.baseUrl);
+    res.redirect('/index.html');
+    //res.send("<!doctype html> <html> <head></head> <body><p>Hello World....</p></body></html>");
+});
+
 app.listen(port, () => {
     console.log("listening to the port " + port);
 })
