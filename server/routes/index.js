@@ -37,6 +37,7 @@ router.post("/contact", (req, res) => {
 
     req.getValidationResult().then((error) => {
         var pwd = req.app.get("GMAIL_PASSWORD");
+        console.log("GMAIL_PASSWORD is " +  pwd);
 
         if (!error.isEmpty()) {
             res.render('contact', {errors : error.array()});
