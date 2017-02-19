@@ -5,15 +5,26 @@ const hbs = require("express-handlebars");
 const bodyParser = require('body-parser');
 const nodemailer = require('nodemailer');
 const expressValidator = require('express-validator');
+const mongoose = require('mongoose');
 
 var routes = require('./routes/index');
 
 var port = process.env.PORT || 5000;
 var GMAIL_PASSWORD = process.env.GMAIL_PASSWORD || "PASSWORD";
+var MONGODB_URI = process.env.MONGODB_URI;
 
 var app = express();
 
-// view engine setup
+// setup the db
+mongoose.Promise = global.Promise;
+mongoose.connect(MONGODB_URI);
+var db = mongoose.connection;
+db.once('open', () => {
+  // we're connected!
+  console.log("Connected to MongoDb")
+});
+
+// setup the view engine
 app.engine("hbs", hbs({extname: "hbs",
                        defaultLayout: "main",
                        layoutsDir: path.join(__dirname , "../client/views/layouts")}));
@@ -22,7 +33,7 @@ app.set("view engine", "hbs");
 
 app.set("GMAIL_PASSWORD", GMAIL_PASSWORD);
 
-
+// ------MIDDLEWARE SETTINGS
 // Set the routes for the static files for both relative and direct paths
 app.use(express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
 app.use(express.static(path.join(__dirname, '../client')));
@@ -49,6 +60,7 @@ app.use(expressValidator({
   }
 }));
 
+// Set the routes.
 app.use('/', routes);
 
 app.listen(port, () => {

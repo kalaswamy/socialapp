@@ -1,0 +1,19 @@
+<div class="container-fluid">
+      <div class="row">
+         <div class="col-md-12">
+           <div class="well">
+              <h2>Requests</h2>
+              {{#if requests}}
+                  {{#each requests}}
+                     <div class="alert alert-danger">
+                         <h3>Name:{{name}}</h3>
+                         <h3>email:{{email}}</h3>
+                         <h3>message:{{message}}</h3>
+                         <h3>Date:{{createdate}}</h3>
+                    </div>
+                  {{/each}}
+              {{/if}}
+            </div>  <!-- well -->
+         </div> <!-- col -->
+      </div> <!-- row -->
+</div> <!-- /container -->

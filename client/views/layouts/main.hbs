@@ -43,6 +43,11 @@
             <li><a href="#">Blog</a></li>
             <li><a href="#">Gallery</a></li>
             <li><a href="#">Profile</a></li>
+            {{#if request_active}}
+                <li class="active"><a href="Request">Requests</a></li>
+            {{else}}
+                <li><a href="request">Requests</a></li>
+            {{/if}}
          </ul>
 
          <ul class="nav navbar-nav navbar-right">
