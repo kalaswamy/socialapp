@@ -1,0 +1,23 @@
+{{#if errors}}
+    {{#each errors}}
+        <div class="alert alert-danger">{{msg}} </div>
+    {{/each}}
+{{/if}}
+
+<h2> Members </h2>
+{{#if users}}
+    {{#each users}}
+        <!-- Left-aligned media object -->
+        <hr>
+        <div class="media">
+            <div class="media-left">
+                <img src={{profileimage}} class="media-object" style="width:60px">
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{firstname}} {{lastname}}</h4>
+                <h5>email: {{email}}</h5>
+                <h5>address: {{address}}</h5>
+            </div>
+        </div>
+    {{/each}}
+{{/if}}

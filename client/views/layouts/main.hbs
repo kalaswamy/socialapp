@@ -70,12 +70,16 @@
                     {{#if profile_active}}
                         <a href="profile" class="list-group-item active">Profile</a>
                     {{else}}
-                        <li><a href="profile" class="list-group-item">Profile</a></li>
+                        <a href="profile" class="list-group-item">Profile</a>
                     {{/if}}
-                    <a href="#" class="list-group-item">Members</a>
-                    <a href="#" class="list-group-item">Chat</a>
-                    <a href="#" class="list-group-item">Blog</a>
+                    {{#if member_active}}
+                        <a href="member" class="list-group-item active">Members</a>
+                    {{else}}
+                        <a href="member" class="list-group-item">Members</a>
+                    {{/if}}
                     <a href="#" class="list-group-item">Gallery</a>
+                    <a href="#" class="list-group-item">Blog</a>
+                    <a href="#" class="list-group-item">Chat</a>
                     {{#if request_active}}
                         <a href="request" class="list-group-item active">Requests</a>
                     {{else}}

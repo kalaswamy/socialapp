@@ -7,6 +7,7 @@ const RequestController = require('../controllers/request_controller');
 const SignupController = require('../controllers/signup_controller');
 const LoginController = require('../controllers/login_controller');
 const ProfileController = require('../controllers/profile_controller');
+const MemberController = require('../controllers/member_controller');
 
 
 /* GET home page. */
@@ -27,6 +28,7 @@ router.get('/login', LoginController.index);
 router.post("/login", LoginController.authenticate);
 router.get('/profile', ProfileController.index);
 router.post('/profileupdate', upload.single('profileimage'), ProfileController.update);
+router.get('/member', MemberController.index);
 
 router.get('/logout', (req, res) => {
   req.logout();
