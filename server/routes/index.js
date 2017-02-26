@@ -5,6 +5,9 @@ const upload = multer({dest: './uploads'});
 const ContactController = require('../controllers/contact_controller');
 const RequestController = require('../controllers/request_controller');
 const SignupController = require('../controllers/signup_controller');
+const LoginController = require('../controllers/login_controller');
+const ProfileController = require('../controllers/profile_controller');
+
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -20,13 +23,16 @@ router.post("/contact", ContactController.create);
 router.get('/request', RequestController.index);
 router.get('/signup', SignupController.index);
 router.post("/signup", upload.single('profileimage'), SignupController.create);
+router.get('/login', LoginController.index);
+router.post("/login", LoginController.authenticate);
+router.get('/profile', ProfileController.index);
+router.post('/profileupdate', upload.single('profileimage'), ProfileController.update);
 
-router.get('/login', (req, res) => {
-  res.render('login', { login_active: 'true' });
+router.get('/logout', (req, res) => {
+  req.logout();
+  res.redirect('/login');
 });
 
-router.post("/login", (req, res) => {
-    res.redirect('/index');
-});
+LoginController.init();
 
 module.exports = router;

@@ -28,6 +28,11 @@
                   </div>
 
                   <div class="form-group">
+                    <label>UserName:</label>
+                    <input type="text" class="form-control"  name="username" placeholder='username' required>
+                  </div>
+
+                  <div class="form-group">
                     <label>Email address:</label>
                     <input type="email" class="form-control"  name="email" placeholder='email' required>
                   </div>
@@ -44,10 +49,18 @@
 
                   <div class="form-group">
                     <label>Profile Image:</label>
-                    <input type="file" class="form-control"  name="profileimage" >
+                    <input type="file" class="form-control"  name="profileimage" accept="image/*" >
                   </div>
 
-                  <button type="submit" class="btn btn-default">Submit</button>
+                  <div class="form-group">
+                    <label>Group:</label>
+                    <select name="group">
+                        <option value="IIT" selected>IIT</option>
+                        <option value="Other">Other</option>
+                    </select>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
               </form>
             </div>  <!-- well -->
          </div> <!-- col -->

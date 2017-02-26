@@ -38,35 +38,60 @@
                <li><a href="contact"><span class="glyphicon glyphicon-envelope">Contact</a></li>
             {{/if}}
 
-            <li><a href="#">Members</a></li>
-            <li><a href="#">Chat</a></li>
-            <li><a href="#">Blog</a></li>
-            <li><a href="#">Gallery</a></li>
-            <li><a href="#">Profile</a></li>
-            {{#if request_active}}
-                <li class="active"><a href="Request">Requests</a></li>
-            {{else}}
-                <li><a href="request">Requests</a></li>
-            {{/if}}
+            
          </ul>
 
          <ul class="nav navbar-nav navbar-right">
-             {{#if signup_active}}
-                <li class="active"><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+             {{#if user}}
+                 <li><a href="#">{{user.username}}</a></li>
+                 <li><a href="logout">logout</a></li>
              {{else}}
-                <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-             {{/if}}
+                 {{#if signup_active}}
+                     <li class="active"><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                 {{else}}
+                     <li><a href="signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                 {{/if}}
 
-             {{#if login_active}}
-                <li class="active"><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-             {{else}}
-                <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                 {{#if login_active}}
+                     <li class="active"><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                 {{else}}
+                     <li><a href="login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                 {{/if}}
              {{/if}}
          </ul>
         </div>
     </nav>
 
-    {{{body}}}
+    {{#if user}}
+      <div class="container-fluid">
+        <div class="row">
+           <div class="col-md-2">
+                <div class="list-group">
+                    {{#if profile_active}}
+                        <a href="profile" class="list-group-item active">Profile</a>
+                    {{else}}
+                        <li><a href="profile" class="list-group-item">Profile</a></li>
+                    {{/if}}
+                    <a href="#" class="list-group-item">Members</a>
+                    <a href="#" class="list-group-item">Chat</a>
+                    <a href="#" class="list-group-item">Blog</a>
+                    <a href="#" class="list-group-item">Gallery</a>
+                    {{#if request_active}}
+                        <a href="request" class="list-group-item active">Requests</a>
+                    {{else}}
+                        <a href="request" class="list-group-item">Requests</a>
+                    {{/if}}
+                </div>
+           </div>
+           <div class="col-md-10">
+               {{{body}}}
+           </div>
+        </div>
+      </div>
+    {{else}}
+        {{{body}}}
+    {{/if}}
+
 
     <hr>
 

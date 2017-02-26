@@ -46,19 +46,18 @@ module.exports = {
                     console.log("Saved successfully to the Db");
 
                     transporter.sendMail(mailOptions, function(error, info){
-                    if(error){
-                        console.log(error);
-                        res.render('contact');
-                    } else {
-                        console.log('Message Sent: '+info.response);
-                        res.redirect('/index');
-                    }
-                });
-
-
+                         if(error){
+                             console.log(error);
+                             res.render('contact');
+                         } else {
+                             console.log('Message Sent: '+info.response);
+                             res.redirect('/index');
+                         }
+                    });
                 })
                 .catch((error) => {
                     console.log(error);
+                    next();
                 });
 
             }
