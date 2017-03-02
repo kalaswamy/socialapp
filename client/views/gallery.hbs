@@ -1,0 +1,53 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#all" data-toggle="tab">All Photos</a></li>
+  <li><a href="#self" data-toggle="tab">Self</a></li>
+  <li><a href="#shared" data-toggle="tab">Shared</a></li>
+</ul>
+
+<div class="tab-content">
+ <div role="tabpanel" class="tab-pane active" id="all">
+
+  {{#each photos_self}}
+      <div class="col-md-1">
+         <div class="title">{{name}}</div>
+            <a href={{photoUrl}} class="thumbnail" data-lightbox="gallery" data-title={{name}}>
+               <img src={{photoUrl}} alt="..." class="img-thumbnail" style="width: 100%; height: 100px; display: block">
+            </a>
+     </div>
+  {{/each}}
+
+  {{#each photos_shared}}
+     <div class="col-md-1">
+        <div class="title">{{name}}</div>
+           <a href={{photoUrl}} class="thumbnail" data-lightbox="gallery" data-title={{name}}>
+             <img src={{photoUrl}} alt="..." class="img-thumbnail" style="width: 100%; height: 100px; display: block">
+           </a>
+    </div>
+  {{/each}}
+
+ </div>
+
+ <div role="tabpanel" class="tab-pane" id="self">
+   {{#each photos_self}}
+      <div class="col-md-1">
+         <div class="title">{{name}}</div>
+            <a href={{photoUrl}} class="thumbnail" data-lightbox="gallery" data-title={{name}}>
+               <img src={{photoUrl}} alt="..." class="img-thumbnail" style="width: 100%; height: 100px; display: block">
+            </a>
+       </div>
+     {{/each}}
+ </div>
+
+ <div role="tabpanel" class="tab-pane" id="shared">
+    {{#each photos_shared}}
+      <div class="col-md-1">
+         <div class="title">{{name}}</div>
+            <a href={{photoUrl}} class="thumbnail" data-lightbox="gallery" data-title={{name}}>
+             <img src={{photoUrl}} alt="..." class="img-thumbnail" style="width: 100%; height: 100px; display: block">
+            </a>
+      </div>
+     {{/each}}
+ </div>
+ 
+</div>
+

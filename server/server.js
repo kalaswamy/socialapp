@@ -43,6 +43,8 @@ app.set("GMAIL_PASSWORD", GMAIL_PASSWORD);
 // ------MIDDLEWARE SETTINGS
 // Set the routes for the static files for both relative and direct paths
 app.use(express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
+app.use(express.static(path.join(__dirname, '../node_modules/lightbox2/dist')));
+
 app.use(express.static(path.join(__dirname, '../client')));
 
 // Set the bodyparser to process post requests.

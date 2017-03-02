@@ -1,0 +1,10 @@
+<div class="row">
+  {{#each photos}}
+  <div class="col-md-3">
+    <div class="title">{{name}}</div>
+    <a href={{photoUrl}} class="thumbnail" data-lightbox="gallery" data-title={{name}}>
+      <img src={{photoUrl}} alt="..." style="width: 100%; height: 250px; display: block">
+    </a>
+  </div>
+  {{/each}}
+</div>
