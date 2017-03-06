@@ -27,5 +27,24 @@ module.exports = {
                  resolve(null);
              }
          });
+     },
+     remove(src) {
+         return new Promise((resolve, reject) => {
+             if (src)
+             {
+                 cloudinary.uploader.destroy(src, (result) =>
+                                       { 
+                                           console.log(result);
+                                           if (result)
+                                           {
+                                               resolve(result);
+                                           } else {
+                                               reject(result);
+                                           }
+                                       });
+             } else {
+                 resolve(null);
+             }
+         });
      }
 }

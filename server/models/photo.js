@@ -32,7 +32,12 @@ const PhotoSchema = new mongoose.Schema({
     createdate: {
         type: Date,
         default: Date.now
-    }
+    },
+    feature: {
+		type: String,
+        default: "gallery",
+        enum: ['gallery', 'blog']
+	}
 });
 
 const Photo =  mongoose.model('photo', PhotoSchema);

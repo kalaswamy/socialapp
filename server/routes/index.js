@@ -10,6 +10,7 @@ const ProfileController = require('../controllers/profile_controller');
 const MemberController = require('../controllers/member_controller');
 const PhotoController = require('../controllers/photo_controller');
 const GalleryController = require('../controllers/gallery_controller');
+const BlogController = require('../controllers/blog_controller');
 
 /* GET home page. */
 router.get('/', (req, res) => {
@@ -33,7 +34,10 @@ router.get('/member', MemberController.index);
 router.get('/photoupload', PhotoController.index);
 router.post("/photoupload", upload.single('profileimage'), PhotoController.create);
 router.get('/gallery', GalleryController.index);
-
+router.get('/blog', BlogController.index);
+router.post('/blogupload', upload.single('profileimage'), BlogController.create);
+router.post('/commentupload', BlogController.createComment);
+router.get('/deleteblog/:id', BlogController.deleteBlog);
 
 router.get('/logout', (req, res) => {
   req.logout();
