@@ -23,6 +23,11 @@ const BlogPostSchema = new mongoose.Schema({
 		type: String,
         required: [true, 'content is required.']
 	},
+    group: {
+		type: String,
+        default: "IIT",
+        enum: ['IIT', 'Other']
+	},
     createdate: {
         type: Date,
         default: Date.now

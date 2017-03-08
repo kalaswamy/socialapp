@@ -10,10 +10,11 @@ module.exports = {
        let allBlogs = {};
        let selfBlogs = {};
 
-       BlogPost.find({})
+       BlogPost.find({group:req.user.group})
        .then((blog) => {
            allBlogs = blog;
-           return BlogPost.find({name: req.user.username})
+           return BlogPost.find({group:req.user.group,
+                                 name: req.user.username});
        })
        .then ((blog) => {
            selfBlogs = blog;
@@ -116,7 +117,8 @@ module.exports = {
                         email: req.user.email,
                         title: req.body.title,
                         photoUrl: imageUrl,
-                        content: req.body.content
+                        content: req.body.content,
+                        group: req.user.group
                     })
                 })
                 .then((blog) => 

@@ -12,6 +12,14 @@ const PhotoController = require('../controllers/photo_controller');
 const GalleryController = require('../controllers/gallery_controller');
 const BlogController = require('../controllers/blog_controller');
 
+var protect = function(req, res, next) {
+   if(req.user) {
+     next();
+   } else {
+     res.redirect('/login');
+   }
+}
+
 /* GET home page. */
 router.get('/', (req, res) => {
   res.render('index', { index_active: 'true' });
@@ -28,16 +36,17 @@ router.get('/signup', SignupController.index);
 router.post("/signup", upload.single('profileimage'), SignupController.create);
 router.get('/login', LoginController.index);
 router.post("/login", LoginController.authenticate);
-router.get('/profile', ProfileController.index);
-router.post('/profileupdate', upload.single('profileimage'), ProfileController.update);
-router.get('/member', MemberController.index);
-router.get('/photoupload', PhotoController.index);
-router.post("/photoupload", upload.single('profileimage'), PhotoController.create);
-router.get('/gallery', GalleryController.index);
-router.get('/blog', BlogController.index);
-router.post('/blogupload', upload.single('profileimage'), BlogController.create);
-router.post('/commentupload', BlogController.createComment);
-router.get('/deleteblog/:id', BlogController.deleteBlog);
+router.get('/profile', protect, ProfileController.index);
+router.post('/profileupdate', protect, upload.single('profileimage'), ProfileController.update);
+router.get('/member', protect, MemberController.index);
+router.get('/photoupload', protect, PhotoController.index);
+router.post("/photoupload", protect, upload.single('profileimage'), PhotoController.create);
+router.get('/gallery', protect, GalleryController.index);
+router.get('/blog', protect, BlogController.index);
+router.post('/blogupload', protect, upload.single('profileimage'), BlogController.create);
+router.post('/commentupload', protect, BlogController.createComment);
+router.get('/deleteblog/:id', protect, BlogController.deleteBlog);
+router.get('/deletephoto/:id', protect, GalleryController.deletePhoto);
 
 router.get('/logout', (req, res) => {
   req.logout();
