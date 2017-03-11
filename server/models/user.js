@@ -50,7 +50,13 @@ const UserSchema = new mongoose.Schema({
   updateddate: {
     type: Date,
     default: Date.now
-  }
+  },
+  resetPasswordToken: {
+		type: String
+	},
+  resetPasswordExpires: {
+		type: Date
+	}
 });
 
 UserSchema.statics.findById = function (id) {

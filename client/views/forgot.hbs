@@ -1,0 +1,25 @@
+<div class="container-fluid">
+      <div class="row">
+         <div class="col-md-6">
+           <div class="well">
+              <h2>Forgot your password?</h2>
+              {{#if errors}}
+                  {{#each errors}}
+                     <div class="alert alert-danger">{{msg}} </div>
+                  {{/each}}
+              {{/if}}
+              
+              <br>
+              <form action="forgot" method="post">
+
+                  <div class="form-group">
+                    <label>What is your email?</label>
+                    <input type="text" class="form-control" id="email" name="email" required>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Send reset</button>
+              </form>
+            </div>  <!-- well -->
+         </div> <!-- col -->
+      </div> <!-- row -->
+</div> <!-- /container -->

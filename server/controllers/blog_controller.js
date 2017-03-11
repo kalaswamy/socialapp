@@ -58,8 +58,8 @@ module.exports = {
         BlogPost.findById(req.body.blogId)
         .then((blog) => {
             let comment = {
-                name: blog.name,
-                email: blog.email,
+                name: req.user.username,
+                email: req.user.email,
                 content: req.body.comment,
                 profileimage: req.user.profileimage
             };
@@ -92,7 +92,7 @@ module.exports = {
         
         req.getValidationResult().then((error) => {
             if (!error.isEmpty()) {
-                res.render('photoupload', {errors : error.array()});
+                res.render('blogupload', {errors : error.array()});
             }
             else {
                 const d = new Date();
