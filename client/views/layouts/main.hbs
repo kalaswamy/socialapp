@@ -97,11 +97,17 @@
                     {{else}}
                         <a href="blog" class="list-group-item">Blog</a>
                     {{/if}}
-                    <a href="#" class="list-group-item">Chat</a>
-                    {{#if request_active}}
-                        <a href="request" class="list-group-item active">Requests</a>
+                    {{#if chat_active}}
+                        <a href="#" class="list-group-item active">Chat</a>
                     {{else}}
-                        <a href="request" class="list-group-item">Requests</a>
+                        <a href="#" class="list-group-item">Chat</a>
+                    {{/if}}
+                    {{#if isAdmin}}
+                        {{#if request_active}}
+                            <a href="request" class="list-group-item active">Requests</a>
+                        {{else}}
+                            <a href="request" class="list-group-item">Requests</a>
+                        {{/if}}
                     {{/if}}
                 </div>
            </div>

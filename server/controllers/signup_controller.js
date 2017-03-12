@@ -49,7 +49,7 @@ module.exports = {
                         fs.unlink(profileimage);
                     }
                     if (!result) {
-                        imageUrl = "";
+                        imageUrl = "img/user.png";
                     } else {
                         imageUrl = result.url;
                     }

@@ -2,6 +2,7 @@ const User = require('../models/user');
 const crypto = require('crypto');
 const async = require('async');
 const nodemailer = require('nodemailer');
+const nodeMailerClient = require("../library/nodemailwrapper");
 
 module.exports = {
     index(req, res, next) {
@@ -34,25 +35,11 @@ module.exports = {
                     });
               },
               function(user, done) {
-                  var pwd = req.app.get("GMAIL_PASSWORD");
-                  var smtpTransport = nodemailer.createTransport({
-                      service: 'Gmail',
-                      auth: {
-                          user: 'seetharaman.swamy@gmail.com',
-                          pass: pwd
-                      }
-                  });
-                  var mailOptions = {
-                      to: user.email,
-                      from: 'sswamy <seetharaman.swamy@gmail.com',
-                      subject: 'Your password has been changed',
-                      text: 'Hello,\n\n' +
-                             'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
-                  };
-                  smtpTransport.sendMail(mailOptions, function(err) {
-                      req.flash('success', 'Success! Your password has been changed.');
-                      done(err);
-                  });
+                  nodeMailerClient.sendMail(user.email,
+                                            'Your password has been changed',
+                                            'Hello,\n\n' + 'This is a confirmation that the password for your account ' + user.email + ' has just been changed.\n'
+                  );
+                  done(null);
              }
              ], function(err) {
                    res.redirect('/');

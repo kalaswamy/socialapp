@@ -91,6 +91,11 @@ app.use(function (req, res, next) {
 // set this local for the view access
 app.get('*', function(req, res, next){
   res.locals.user = req.user || null;
+  if (req.user) {
+    if (req.user.role === "admin") {
+        res.locals.isAdmin = true;
+    }
+  }
   next();
 });
 

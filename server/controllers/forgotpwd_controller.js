@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const crypto = require('crypto');
 const async = require('async');
-const nodemailer = require('nodemailer');
+const nodeMailerClient = require("../library/nodemailwrapper");
 
 module.exports = {
     index(req, res, next) {
@@ -41,30 +41,17 @@ module.exports = {
                                      });
                                  },
                                  function(token, user, done) {
-                                     var pwd = req.app.get("GMAIL_PASSWORD");
-                                     var smtpTransport = nodemailer.createTransport({
-                                                            service: 'Gmail',
-                                                            auth: {
-                                                                    user: 'seetharaman.swamy@gmail.com',
-                                                                    pass: pwd
-                                                                  }
-                                                            });
-                                     var mailOptions = {
-                                               to: user.email,
-                                               from: 'sswamy <seetharaman.swamy@gmail.com>',
-                                               subject: 'Password Reset',
-                                               text: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
-                                                      'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
-                                                      'http://' + req.headers.host + '/reset?token=' + token + '\n\n' +
-                                                      'If you did not request this, please ignore this email and your password will remain unchanged.\n'
-                                               };
-                                    console.log("Before sending email");
-                                    user1 = user;
-                                    smtpTransport.sendMail(mailOptions, function(err) {
-                                             req.flash('info', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
-                                             console.log("After sending email")
-                                             done(err, 'done');
-                                    });
+                                     nodeMailerClient.sendMail(user.email, 
+                                                              'Password Reset',
+                                                              'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                                                              'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                                                              'http://' + req.headers.host + '/reset?token=' + token + '\n\n' +
+                                                               'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                                                              );
+                                     
+                                     user1 = user;
+                                     done(null, 'done');
+                                    
                                  }
                                  ], function(err) {
                                       if (err) return next(err);
