@@ -13,6 +13,7 @@ const MemberController = require('../controllers/member_controller');
 const PhotoController = require('../controllers/photo_controller');
 const GalleryController = require('../controllers/gallery_controller');
 const BlogController = require('../controllers/blog_controller');
+const ChatController = require('../controllers/chat_controller');
 
 var protect = function(req, res, next) {
    if(req.user) {
@@ -55,6 +56,7 @@ router.post('/blogupload', protect, upload.single('profileimage'), BlogControlle
 router.post('/commentupload', protect, BlogController.createComment);
 router.get('/deleteblog/:id', protect, BlogController.deleteBlog);
 router.get('/deletephoto/:id', protect, GalleryController.deletePhoto);
+router.get('/chat', protect, ChatController.index);
 
 router.get('/logout', (req, res) => {
   req.logout();

@@ -1,0 +1,44 @@
+<div class="container-fluid">
+<div class="row content">
+    <div class="col-sm-3 sidenav">
+        <p id="username" hidden>{{user.username}}</p>
+        <p id="group" hidden>{{user.group}}</p>
+        <p id="profileimage" hidden>{{user.profileimage}}</p>
+
+        <h4>Chat Members ({{user.group}})</h4>
+        <div id="chatusers"></div>
+    </div>
+
+    <div id="message-container" class="col-sm-9">
+        <div class="well" style="min-height: 500px">
+            <ol id="messages" class="chat__messages" style="width: 100%"></ol>
+        </div>
+
+        <form id="message-form" class="form-horizontal">
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <input name="message" type="text"  size="200" class="form-control" placeholder="Message" autofocus required autocomplete="off"/>
+                </div>
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </form>
+        
+    </div>
+
+    <script id="users-template" type="text/template">
+        <div class="media">
+            <div class="media-left">
+                <img src={{profileimage}} class="media-object" style="width:40px">
+            </div>
+            <div class="media-body">
+                <h5 class="media-heading">{{name}} </h5>
+                <a href={{location}} target="_blank">location</a>
+            </div>
+       </div>
+   </script>
+
+    
+</div> <!-- row -->
+</div>

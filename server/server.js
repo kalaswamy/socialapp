@@ -12,6 +12,8 @@ const expressValidator = require('express-validator');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 
+const SocketWrapper = require("./socket_server");
+
 var routes = require('./routes/index');
 
 var port = process.env.PORT || 5000;
@@ -22,6 +24,8 @@ var MONGODB_URI = process.env.MONGODB_URI;
 global.AppRootPath = path.resolve(__dirname, "../");
 
 var app = express();
+var http = require('http').Server(app);
+SocketWrapper.init(http); //Initialize the socketio
 
 // setup the mongo db
 mongoose.Promise = global.Promise;
@@ -44,6 +48,8 @@ app.set("GMAIL_PASSWORD", GMAIL_PASSWORD);
 // Set the routes for the static files for both relative and direct paths
 app.use(express.static(path.join(__dirname, '../node_modules/bootstrap/dist')));
 app.use(express.static(path.join(__dirname, '../node_modules/lightbox2/dist')));
+app.use(express.static(path.join(__dirname, '../node_modules/socket.io-client/dist')));
+app.use(express.static(path.join(__dirname, '../node_modules/mustache')));
 
 app.use(express.static(path.join(__dirname, '../client')));
 
@@ -118,7 +124,7 @@ app.use(function(err, req, res, next) {
     });
 });
 
-app.listen(port, () => {
+http.listen(port, () => {
     console.log("listening to the port " + port);
 })
 
